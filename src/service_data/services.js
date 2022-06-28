@@ -29,6 +29,9 @@ const headersAuth = {
 }
 
 const user = "BeaSCarvalho";
+
+//para acessar os repositórios: /repos
+
 export const test = async() => {
   try {
     const response = await fetch(`${url}/${user}`, {
