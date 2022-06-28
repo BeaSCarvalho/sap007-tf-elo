@@ -1,4 +1,6 @@
 {
+  "name": "sap007-tf-elo",
+  "homepage": "https://talentfest-elo.vercel.app/",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",

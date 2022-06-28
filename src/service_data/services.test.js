@@ -36,7 +36,7 @@ user = {
 }
 
 
-describe('', () => {
+describe('API link users', () => {
   test('the data is equal to the object user', async () => {
     await expect(getUser('octocat')).resolves.toBe(user);
   });
