@@ -1,4 +1,5 @@
 import React from 'react';
+import Home from "./pages/home"
 import { getUser, test } from "./service_data/services.js";
 
 function App() {
@@ -19,18 +20,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Oi
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      < Home />
     </div>
   );
 }
