@@ -38,13 +38,11 @@ describe("API link users", () => {
 
   test("return response with key ok = true", async () => {
     const data = await getUser("octocat")
-    expect(data.ok).toBe(responseOK.ok)
     expect(data.status).toBe(responseOK.status)
   });
   
   test("the fetch fails with a Not found code: 404", async () => {
     const data = await getUser()
-    expect(data.ok).toBe(responseOKFalse.ok)
     expect(data.status).toBe(responseOKFalse.status)
   });
 
@@ -62,8 +60,8 @@ describe("Testing the type of data keys and data", () => {
 
   keysArrStr.forEach(eachKey => {
     test(`the type of ${eachKey} have to be a string`, async () => {
-      const data = await getUser();
-      const user = await data.json();
+      const data = await getUser('octocat');
+      const user = await data.data;
       const type = typeof user[eachKey];
       let isStrOrObjct = type === "string" || type === "object";
       expect(isStrOrObjct).toBe(true) ;
@@ -72,8 +70,8 @@ describe("Testing the type of data keys and data", () => {
  
   keyArrNumber.forEach(eachKey => {
     test(`the type of ${eachKey} have to be a number`, async () => {
-      const data = await getUser();
-      const user = await data.json();
+      const data = await getUser('octocat');
+      const user = await data.data;
       console.log(user)
       const type = typeof await user[eachKey]
       console.log(user[eachKey])
@@ -95,13 +93,11 @@ describe("Testing the type of data keys and data", () => {
 
 //   test("return response with key ok = true", async () => {
 //     const data = await getRepo("https://api.github.com/users/octocat/repos")
-//     expect(data.ok).toBe(responseOK.ok)
 //     expect(data.status).toBe(responseOK.status)
 //   });
   
 //   test("the fetch fails with a Not found code: 404", async () => {
 //     const data = await getRepo()
-//     expect(data.ok).toBe(responseOKFalse.ok)
 //     expect(data.status).toBe(responseOKFalse.status)
 //   });
 
