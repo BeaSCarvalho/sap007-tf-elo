@@ -1,0 +1,20 @@
+@import "../../index.css";
+
+
+
+@media screen and (max-width:868px) {
+
+    .input{
+        display: flex;
+        justify-content: center;
+        margin-top: 5%;
+        }
+}
+
+@media screen and (max-width: 480px) {
+
+    .input{
+        justify-content: center
+        }
+
+}
