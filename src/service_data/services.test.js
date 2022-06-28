@@ -1,6 +1,6 @@
 import { getUser } from './service_data/services.js'
 
-user = {
+const user = {
   "login": "octocat",
   "id": 583231,
   "node_id": "MDQ6VXNlcjU4MzIzMQ==",
