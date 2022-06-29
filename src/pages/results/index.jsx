@@ -2,10 +2,10 @@ import React from "react";
 import Profile from "../../components/profile";
 import Repository from "../../components/repository";
 import { useEffect, useState } from "react";
-import { TextField } from "@mui/material";
 import PropTypes from 'prop-types';
 
 import { getUser, getRepository } from "../../service_data/services"
+import InputSearch from "../../components/input";
 
 PageResults.propTypes = {
   setSearchedUser: PropTypes.func
@@ -69,15 +69,12 @@ function PageResults(props) {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-
-        </p>
-        <TextField id="username" label="Filled" variant="filled"
-          onChange={event => setUsername(props.setSearchedUser(event.target.value))}
+      <header className="header">
+        < InputSearch onChange={event => setUsername(props.setSearchedUser(event.target.value))}
           value={username}
         />
       </header>
+
       <main>
         {nonEmptySearch &&
           <section>
