@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
 import logo from "../../img/logo.gif"
 import InputSearch from "../../components/input";
 import styles from "./home.module.css"
 import Footer from "../../components/footer";
 import Divider from '@mui/material/Divider';
+import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
 
-function Home() {
+Home.propTypes = {
+  setSearchedUser: PropTypes.func
+};
 
+function Home( props ) {
+  const navigate = useNavigate();
+  
+  useEffect(()=>{
+    props.setSearchedUser()
+  },[])
+  
+    function handleSubmit(e){
+    e.preventDefault();
+    navigate(`../results`)
+  }
+  
     return (
         <>
             <div className={styles.container}>
@@ -24,4 +40,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Home;

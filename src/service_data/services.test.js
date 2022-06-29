@@ -53,7 +53,7 @@ describe("Testing the type of data keys and data", () => {
   const keyArrNumber = Object.keys(userTestKeysThatHaveNumberValue)
 
   test('the type of data have to be an object and not an Array', async() => {
-    const data = await getUser();
+    const data = await getUser('octocat');
     expect(typeof data).toBe('object');
     expect(Array.isArray(data)).toBe(false)
   })
