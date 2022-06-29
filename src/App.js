@@ -1,13 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { getUser, test } from "./service_data/services.js";
 
 function App() {
+  
+  getUser("octo").then((response) => response.json()).then((response) => console.log(response))
+  
+  async function getInfos () {
+    try {
+      const response = await test();
+      return console.log(response)
+    } catch (error) {
+      return console.log(error)
+    }
+  }
+
+  getInfos()
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Oi
         </p>
         <a
           className="App-link"
