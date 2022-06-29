@@ -1,56 +1,71 @@
 import React from "react";
+import Profile from "../../components/profile";
+import Repository from "../../components/repository";
 import { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
+import PropTypes from 'prop-types';
 
 import { getUser, getRepository } from "../../service_data/services"
 
-function PageResults() {
-  const [searchedUser, setSearchedUser] = useState("");
-  const [error, setError] = useState("")
+PageResults.propTypes = {
+  setSearchedUser: PropTypes.func
+};
+
+function PageResults(props) {
+  const [username, setUsername] = useState("");
+  //const [error, setError] = useState("")
   const [infosUser, setInfosUser] = useState([])
   const [reposInfos, setReposInfos] = useState([])
 
-  console.log(searchedUser)
+  // useEffect(() => {
+  //   props.setSearchedUser(searchedUser)
+  // }, [])
 
-//   const handleChange = (e) => {
-//     setSearchedUser({
-//       ...searchedUser,
-//       [e.target.id]: e.target.value
-//     })
-//     setUser()
-//     setRepositories()
-//   }
+  // useEffect(() => {
+  //   setUsername
+  // })
+
+  //   const handleChange = (e) => {
+  //     setSearchedUser({
+  //       ...searchedUser,
+  //       [e.target.id]: e.target.value
+  //     })
+  //     setUser()
+  //     setRepositories()
+  //   }
 
   async function setUser() {
     try {
-      const response = await getUser(searchedUser);
+      const response = await getUser(username);
       if (response.data) {
         const infos = response.data;
         setInfosUser(infos)
       }
     } catch (error) {
-      setError("Erro")
+      //setError("Erro")
+      console.log(error)
     }
   }
 
   useEffect(() => {
+    console.log(username)
     setUser()
     setRepositories()
-  }, [searchedUser])
+  }, [username])
 
   async function setRepositories() {
     try {
-      const response = await getRepository(searchedUser);
+      const response = await getRepository(username);
       console.log(response.data);
       const allRepos = response.data;
       setReposInfos(allRepos)
     } catch (error) {
       console.log(error)
-      setError("Outro Erro")
+      //setError("Outro Erro")
     }
   }
 
-  const nonEmptySearch = searchedUser.username !== "";
+  const nonEmptySearch = username !== "";
 
   return (
     <div className="App">
@@ -59,49 +74,25 @@ function PageResults() {
 
         </p>
         <TextField id="username" label="Filled" variant="filled"
-          onChange={event => setSearchedUser(event.target.value)}
-          defaultValue={searchedUser.name}
+          onChange={event => setUsername(props.setSearchedUser(event.target.value))}
+          value={username}
         />
       </header>
       <main>
         {nonEmptySearch &&
-          <section className='results-container'>
-            <div className='user-card'>
-              <img src={infosUser.avatar_url} alt={infosUser.username + 'photo'}></img>
-              <p>{infosUser.login}</p>
-              <p>{infosUser.name}</p>
-              <p>{infosUser.html_url}</p>
-              <p>{infosUser.bio}</p>
-              <p>Seguidores: {infosUser.followers}</p>
-              <p>Seguindo: {infosUser.following}</p>
-              <p>{infosUser.public_repo}</p>
-              <p>{infosUser.company}</p>
-              <p>{infosUser.blog}</p>
-              <p>{infosUser.location}</p>
-              <p>{infosUser.email}</p>
-              <p>{infosUser.hireable}</p>
-              <p>{infosUser.twitter_username}</p>
-              <p>{infosUser.repos_url}</p>
-            </div>
-
-
+          <section>
+            <Profile user={infosUser} />
             {reposInfos.map((item) => {
               return (
-                <ul className='repos-list' key={item.id}>
-                  <li>{item.name}</li>
-                  <li>{item.html_url}</li>
-                  <li>{item.description}</li>
-                  <li>{item.homepage}</li>
-                  <li>{item.stargazers_count}</li>
-                  <li>{item.forks_count}</li>
-                  <li>{item.language}</li>
-                </ul>
+                <Repository key={item.id} name={item.name} htmlUrl={item.html_url} 
+                  description={item.description} homepage={item.homepage} 
+                  stargazersCount={item.stargazers_count} 
+                  forksCount={item.forks_count} language={item.language}
+                />
               )
             })}
           </section>
         }
-
-        <p>{error}</p>
       </main>
     </div>
   );

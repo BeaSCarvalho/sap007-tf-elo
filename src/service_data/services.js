@@ -2,7 +2,8 @@ import { Octokit } from "octokit";
 
 export async function getRepository(user){
   const octokit = new Octokit({
-    auth: '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'
+    auth: "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"
+
   })
 
   return await octokit.request(`GET /users/${user}/repos`, {
@@ -12,7 +13,7 @@ export async function getRepository(user){
 
 export async function getUser(user){
   const octokit = new Octokit({
-    auth: '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'
+    auth: "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"
   })
 
   return await octokit.request(`GET /users/${user}`, {
