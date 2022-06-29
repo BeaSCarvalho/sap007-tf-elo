@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect} from "react";
 import logo from "../../img/logo.gif"
 import InputSearch from "../../components/input";
 import styles from "./home.module.css"
