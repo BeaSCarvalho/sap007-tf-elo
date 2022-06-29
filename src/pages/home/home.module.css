@@ -15,7 +15,7 @@
 }
 
 .textAbout{
-   padding: 0 5% 5% 5%;
+   padding: 0 5% 10% 5%;
    font-size: 2.2em;
 
 }
@@ -36,6 +36,9 @@
 
    .gif{
       margin-left: 0;
+   }
+   .textAbout{
+      padding: 0 5% 5% 5%;
    }
 
 }
@@ -62,6 +65,13 @@
 @media screen and (max-width: 480px) {
    .container {
       flex-direction: column;
+   }
+
+   .container h1{
+      font-size: 1.2em ;
+   }
+   .textAbout{
+      font-size: 1.2em;
    }
 
 }
