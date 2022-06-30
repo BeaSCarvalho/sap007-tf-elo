@@ -24,14 +24,19 @@ function PageResults(props) {
   const [apearRepos, setApearRepos] = useState(false)
   const [infosUser, setInfosUser] = useState({})
   const [reposInfos, setReposInfos] = useState([])
+  const [codeError, setCodeError] = useState('')
+  const handleChange = (e) => {
+    props.setSearchedUser(e.target.value.trim());
+  }
 
-  console.log(apearUsers, apearRepos, error, errorRepos)
 
   useEffect(() => {
-    if (props.searchedUser !== "" && props.searchedUser !== null && props.searchedUser !== undefined) {
+    if (props.searchedUser !== "" && props.searchedUser !== null && props.searchedUser !== undefined && props.searchedUser.length !== 0) {
       setUser(props.searchedUser);
     } else {
+      setApearUsers(false);
       setError(false);
+      setCodeError("");
     }
   }, [props.searchedUser])
 
@@ -40,14 +45,14 @@ function PageResults(props) {
       const response = await getUser(valueTyped);
       if (response.data) {
         const infos = response.data;
-        console.log(infos);
+        setCodeError("")
         setError(false);
         setInfosUser(infos);
         setApearUsers(true);
         setRepositories(valueTyped);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      setCodeError(`${err.code}`)
       setApearUsers(false);
       setError(true);
       setApearRepos(false);
@@ -58,21 +63,18 @@ function PageResults(props) {
   async function setRepositories(valueTyped) {
     try {
       const response = await getRepository(valueTyped);
-      console.log(response.data);
       const allRepos = response.data;
+      setCodeError("")
       setErrorRepos(false);
       setReposInfos(allRepos);
       setApearRepos(true);
-    } catch (error) {
-      console.log(error);
+    } catch(err) {
+      setCodeError(`${err.code}`)
       setApearRepos(false);
       setErrorRepos(true);
     }
   }
 
-  const handleChange = (e) => {
-    props.setSearchedUser(e.target.value.trim());
-  }
 
   return (
     <div className={styles.container}>
@@ -88,22 +90,22 @@ function PageResults(props) {
               apearUsers && error === false ?
                 <Profile user={infosUser} /> : null
             }
-            {!error && !apearUsers ? <p className={styles.error}>Pesquise algo</p> : null}
-            {error ? <HandlingErrors className={styles.divError} classNameError={styles.error} /> : null}
+            {!error && !apearUsers ? <p className={styles.search}>Pesquise um usuário.</p> : null}
+            {error && !apearUsers ? <HandlingErrors className={styles.divError} classNameError={styles.error} errorCode={codeError} /> : null}
             {apearUsers && !error && apearRepos && !errorRepos ?
               <section className={styles.containerRepo}>
                 {reposInfos.map((item) => {
                   return (
                     <ul key={item.id} className={styles.reposCard}>
                       <li className={styles.liName}>Nome: {item.name}</li>
-                      <li className={styles.li}><a href={item.html_url}>Link de acesso</a></li>
-                      <li className={styles.liDescription}>Descrição: {item.description}</li>
+                      <li className={styles.li}><a href={item.html_url} className={styles.a}>Acessar no Github</a></li>
+                      <li className={styles.liDescription}>Descrição: {item.description !== null ? item.description : `Sem descrição`}</li>
                       <div className={styles.cardIcons}>
-                        <li className={styles.li}><a href={item.homepage}>Link do deploy</a></li>
+                        <li className={styles.li}><a href={item.homepage} className={styles.a}>Link do deploy</a></li>
                         <li className={styles.li}><StarIcon sx={{ color: "#FAC100", fontSize: 30 }} />{item.stargazers_count}</li>
                         <li className={styles.li}><img src={iconFork} alt="icon Fork Github" className={styles.iconFork}></img>{item.forks_count}</li>
                       </div>
-                      <li className={styles.liLanguages}>Linguagem mais utilizada: {item.language}</li>
+                      <li className={styles.liLanguages}>Linguagem mais utilizada: {item.language !== null ? item.language : `Não especificada`}</li>
                     </ul>
                   )
                 })}

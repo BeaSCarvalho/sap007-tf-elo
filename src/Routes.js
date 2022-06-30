@@ -6,15 +6,11 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function Paths() {
 
   const [search, setSearch] = useState("")
-  
-  useEffect(() => {
-    console.log(search)
-  }, [search])
 
   return (
     <Router>
