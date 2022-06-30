@@ -1,0 +1,13 @@
+@import '../../index.css';
+
+.gif {
+  width: 90px;
+  height: 90px;
+}
+
+@media screen and (min-width: 1024px) {
+  .gif {
+    width: 110px;
+    height: 110px;
+  }
+}

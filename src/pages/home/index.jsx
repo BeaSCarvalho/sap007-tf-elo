@@ -7,16 +7,13 @@ import Divider from '@mui/material/Divider';
 import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
 
+
 Home.propTypes = {
   setSearchedUser: PropTypes.func
 };
 
 function Home( props ) {
   const navigate = useNavigate();
-  
-  useEffect(()=>{
-    props.setSearchedUser()
-  },[])
   
     function handleSubmit(e){
     e.preventDefault();

@@ -1,0 +1,84 @@
+.main{
+  display: grid;
+}
+
+.iconFork{
+  width: 30px;
+}
+
+.cardIcons{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.reposCard{
+  background-color: #010101;
+  max-width: 25rem;
+  min-width: 20rem;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  box-shadow: 4.8px 4.8px 4.8px rgba(0, 0, 0, 0.25);
+  justify-content: center;
+} 
+
+.containerRepo{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  margin-right: 15px;
+}
+
+.li, .liName, .liLanguages, .liDescription {
+  list-style: none;
+  color: white;
+  padding: 20px 20px 5px 20px;
+}
+
+.MuiPaper-root {
+  margin: 100px;
+}
+
+.liName{
+  font-weight: bolder;
+  padding: 20px 0 10px 20px;
+  font-size: 1.2rem;
+}
+
+.liLanguages {
+  padding-bottom: 20px;
+}
+
+.liDescription{
+  min-height: 90px;
+}
+
+.divInput {
+  padding: 2%;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 1024px) { 
+  .containerRepo{
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+  }
+
+  .main {
+    grid-template-columns: 1fr 2fr;
+    margin: 5rem 0 0 1.4rem;
+    column-gap: 15px;
+  }
+
+  .divInput {
+    position: absolute;
+    padding: 0;
+    margin-top: 0;
+    top: 1%;
+    right: 0;
+    width: 30%;
+  }
+}
+

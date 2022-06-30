@@ -1,19 +1,14 @@
 @import "../../index.css";
 
-
 .input {
-    display: flex;
-    justify-content: center;
-    margin-top: 5%;
+  display: flex;
+  justify-content: center;
 }
 
-
-
 @media screen and (max-width: 480px) {
-
-    .input {
-        padding: 0 3%;
-        justify-content: center;
-    }
+  .input {
+    padding: 0 3%;
+    justify-content: center;
+  }
 
 }
