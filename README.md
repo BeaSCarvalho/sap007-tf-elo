@@ -1,6 +1,6 @@
 
 <div align="center">
-<img src='https://user-images.githubusercontent.com/97405991/176543493-17bf5c88-0528-4fce-a28d-ec557f936238.gif' alt="FinderGitHub"  width="150px;"></a> 
+<img src='https://user-images.githubusercontent.com/97405991/176543493-17bf5c88-0528-4fce-a28d-ec557f936238.gif' alt="FinderGitHub"  width="300"></a> 
 </div>
 
 
@@ -10,7 +10,8 @@
 * [2. Interface de usuário.](#2-interface-de-usuário)
 * [3. Como usar.](#3-como-usar)
 * [4. Ferramentas utilizadas.](#4-ferramentas-utilizadas)
-* [5. Desenvolvedoras ](#5-desenvolvedoras)
+* [5. Implementações futuras](#5-implementações-futuras)
+* [6. Desenvolvedoras ](#5-desenvolvedoras)
 
 
 
@@ -22,12 +23,12 @@ Projeto desenvolvido para o evento de hackaton promovido pelo bootcamp de front-
 
 ---
 ## 2. Interface de usuário
-A interface foi desenvolvida para funcionar de maneira simples e intuitiva, para facilitar a busca de usuários e repositórios, inclusie, por pessoas que não possuem tanta familiaridade com o GitHub. Com poucos cliques é possível encontrar exatamente o que se procura. 
+A interface foi desenvolvida para funcionar de maneira simples e intuitiva, para facilitar a busca de usuários e repositórios, inclusive, por pessoas que não possuem tanta familiaridade com o GitHub. Com poucos cliques é possível encontrar exatamente o que se procura. 
 
 ### Proto Personas
 
 <div align="center">
-  <img src='./src/img/proto2.svg' align="center" alt="protopersona1"  width="500px"> 
+  <img src='./src/img/protop2.svg' align="center" alt="protopersona1"  width="500px"> 
 </div>
 <br>
 <div align="center">
@@ -73,6 +74,9 @@ Instalar as dependências do projeto no computador (cópia local).
 
 `$ npm install or yarn install`
 
+Crie um arquivo com o formato `.env` ([siga o exemplo](https://www.youtube.com/watch?v=_HGDTCQYoDc&feature=youtu.be )).
+Em seguida, crie um token no GitHub, esse token deverá ser colocado no arquivo `env.` O token pode ser gerado sem escopo, ou seja, sem marcar as opções de permissões. Para gerar um token siga o [link](https://github.com/settings/tokens/new).
+
 Iniciar a aplicação
 
 `$ npm start or yarn start`
@@ -87,7 +91,7 @@ Realizar os testes unitários
 
 ## 4. Ferramentas utilizadas
 Utilização do Trello para organização durante as Sprints do projeto, realizando a divisão de baby steps para as tarefas desenvolvidas, geradas a partir do Backlog.
-Realização das cerimonias de metodologia ágil: Daily, Sprint Planning, Sprint Review, Sprint Retrospective, e Sprint Checkout. Todos os dados de usuários encontrados nessa aplicação, são consumidos através da [API REST](https://docs.github.com/pt/rest) do GitHub. 
+Realização das cerimônias de metodologia ágil: Daily, Sprint Planning, Sprint Review, Sprint Retrospective, e Sprint Checkout. Todos os dados de usuários encontrados nessa aplicação, são consumidos através da [API REST](https://docs.github.com/pt/rest) do GitHub. Além disso, o projeto foi desenvolvido através do processo `TDD`(Test Driven Development - Desenvolvimento Orientado a Testes).  
 <br>
 <br>
 
@@ -127,7 +131,17 @@ Realização das cerimonias de metodologia ágil: Daily, Sprint Planning, Sprint
 <br>
 <br>
 
-##  5. Desenvolvedoras
+## 5. Implementações futuras
+
+Futuramente, o campo de busca será aprimorado. O objetivo é ampliar as possibilidades de busca do usuário, assim será possível pesquisar por nome de repositório, tecnologias utilizadas e localização do usuário.  
+
+
+
+---
+<br>
+<br>
+
+##  6. Desenvolvedoras
 
 | [<img src="https://avatars.githubusercontent.com/u/99045620?v=4" width=115><br><sub>Beatriz Carvalho</sub>](https://github.com/BeaSCarvalho) |  [<img src="https://avatars.githubusercontent.com/u/97262052?v=4" width=115><br><sub>Mônica Guimaraes</sub>](https://github.com/MonicaGuimaraes) |  [<img src="https://avatars.githubusercontent.com/u/82822964?v=4" width=115><br><sub>Taize Santos</sub>](https://github.com/taizesantos)  | [<img src="https://avatars.githubusercontent.com/u/97405991?v=4" width=115><br><sub>Tatiane Mendonça</sub>](https://github.com/Tati-Mendonca)  | [<img src="https://avatars.githubusercontent.com/u/97414581?v=4" width=115><br><sub>Wayra Arendartchuk</sub>](https://github.com/WayraArendartchukCastro)  |
 | :---: | :---: | :---: | :---: | :---:
