@@ -1,6 +1,6 @@
 
 <div align="center">
-<img src='https://user-images.githubusercontent.com/97405991/176543493-17bf5c88-0528-4fce-a28d-ec557f936238.gif' alt="FinderGitHub"  width="300px;"></a> 
+<img src='https://user-images.githubusercontent.com/97405991/176543493-17bf5c88-0528-4fce-a28d-ec557f936238.gif' alt="FinderGitHub"  width="200px;"></a> 
 </div>
 
 
@@ -108,6 +108,8 @@ Realização das cerimonias de metodologia ágil: Daily, Sprint Planning, Sprint
 <br>
 <br>
 
+<div align="center">
+
 | Tools | Version |
 |---|---|
 **Node.js** |  v16.13.1 | 
@@ -118,6 +120,7 @@ Realização das cerimonias de metodologia ágil: Daily, Sprint Planning, Sprint
 **Octokit** | 1.8.1 |
 **React-router-dom** | 6.3.0 |
 
+</div>
 
 
 ---
