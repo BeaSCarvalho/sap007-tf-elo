@@ -68,7 +68,7 @@ Protótipo Desktop:
 3. Instale o [Node.js](https://nodejs.org/en/download/) (que inclui o npm).
 4. [Clone o projeto](https://docs.github.com/pt/repositories/creating-and-managing-repositories/cloning-a-repository) para a sua máquina, abra o terminal e execute os seguintes comandos:
 
-`$ git clone https:/`
+`$ git clone https://github.com/BeaSCarvalho/sap007-tf-elo.git`
 
 Instalar as dependências do projeto no computador (cópia local).
 
