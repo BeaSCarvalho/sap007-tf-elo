@@ -1,4 +1,4 @@
-import { getUser } from './services.js';
+import { getUser, getRepository } from './services.js';
 
 const userTestKeysThatHaveStringValue = {
   "login": "login",
@@ -41,11 +41,7 @@ describe("API link users", () => {
     expect(data.status).toBe(responseOK.status)
   });
   
-  test("the fetch fails with a Not found code: 404", async () => {
-    const data = await getUser()
-    expect(data.status).toBe(responseOKFalse.status)
-  });
-
+  
 });
 
 describe("Testing the type of data keys and data", () => {
@@ -72,9 +68,7 @@ describe("Testing the type of data keys and data", () => {
     test(`the type of ${eachKey} have to be a number`, async () => {
       const data = await getUser('octocat');
       const user = await data.data;
-      console.log(user)
       const type = typeof await user[eachKey]
-      console.log(user[eachKey])
       const isNumber = type === "number"
       expect(isNumber).toBe(true);
     });
@@ -83,22 +77,17 @@ describe("Testing the type of data keys and data", () => {
 });
 
 
-// describe("API link repos", () => {
+describe("API link repos", () => {
 
-// test('the type of data have to be an object and an Array', async() => {
-//   const data = await getRepo();
-//   expect(typeof data).toBe('object');
-//   expect(Array.isArray(data)).toBe(true);
-// })
+test('the type of data have to be an object and an Array', async() => {
+  const data = await getRepository("octocat");
+  expect(typeof data.data).toBe('object');
+  expect(Array.isArray(data.data)).toBe(true);
+})
 
-//   test("return response with key ok = true", async () => {
-//     const data = await getRepo("https://api.github.com/users/octocat/repos")
-//     expect(data.status).toBe(responseOK.status)
-//   });
-  
-//   test("the fetch fails with a Not found code: 404", async () => {
-//     const data = await getRepo()
-//     expect(data.status).toBe(responseOKFalse.status)
-//   });
+  test("return response with key ok = true", async () => {
+    const data = await getRepository("octocat")
+    expect(data.status).toBe(responseOK.status)
+  });
 
-// });
+});

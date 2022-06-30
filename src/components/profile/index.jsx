@@ -4,6 +4,7 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import styles from './profile.module.css'
+
 Profile.propTypes = {
   user: PropTypes.object
 };
@@ -22,7 +23,7 @@ function Profile(props) {
             {<Avatar
               alt={props.user.username + 'photo'}
               src={props.user.avatar_url}
-              sx={{ width: 200, height: 200 }}
+              sx={{ width: 200, height: 200, marginBottom: 2 }}
             />}
           </Link>
         </Grid>
@@ -33,8 +34,8 @@ function Profile(props) {
             alignItems="center"
             sx={{ width: "100%" }}>
             <Grid item
-              sx={{ fontWeight: "bold", fontSize: "1.2em" }}
-            >
+              sx={{ fontWeight: "bold", fontSize: "1.2em"}}
+            >          
               <p>Username: {props.user.login !== null ? props.user.login : null}</p>
             </Grid>
             <Grid item>
@@ -69,14 +70,8 @@ function Profile(props) {
             <p>{props.user.hireable !== null ? props.user.hireable : null}</p>
             <p>
               {props.user["twitter_username"] !== null ? 
-                <Link 
-                  href={props.user["twitter_username"]}
-                  underline="hover"
-                  target="_blank"
-                  rel="noopener"
-                  color="red" >
-                  {`Twitter: ${props.user["twitter_username"]}`}
-                </Link> :
+               `Twitter: ${props.user["twitter_username"]}`
+                 :
                 null
               }
               </p>

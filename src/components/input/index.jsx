@@ -7,7 +7,7 @@ import styles from "./input.module.css";
 InputSearch.propTypes = {
     onClick : PropTypes.func,
     onChange : PropTypes.func,
-    disableButton: PropTypes.string
+    disableButton: PropTypes.bool
 };
 
 function InputSearch (props){
