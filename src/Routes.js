@@ -19,11 +19,11 @@ function Paths() {
   return (
     <Router>
       <Routes>
-        <Route path='/results' element={<PageResults searchedUser={search} />} />
+        <Route path='/results' element={<PageResults searchedUser={search} setSearchedUser={setSearch} />} />
         <Route path='/' element={<Home setSearchedUser={setSearch} />} />
       </Routes>
     </Router>
   );
 }
-//  searchedUser={searched} setSearchedUser={setSearched} 
+
 export default Paths;

@@ -1,1 +1,13 @@
 @import '../../index.css';
+
+.container {
+  min-width: 94%;
+  margin: 0 3%;
+  padding: 10px 0;
+  background-color: #4f41a688;
+  border-radius: 10px;
+}
+.space {
+  margin: 0 5px;
+  margin-bottom: 10px;
+}

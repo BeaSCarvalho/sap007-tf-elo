@@ -1,32 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from 'prop-types';
-
+import { useNavigate } from "react-router-dom";
 import logo from "../../img/logo.gif"
 import InputSearch from "../../components/input";
 import styles from "./home.module.css"
 
-// import Divider from '@mui/material/Divider';
-//import { useState } from 'react';
-
-import { useNavigate } from "react-router-dom";
 
 Home.propTypes = {
   setSearchedUser: PropTypes.func
 };
 
 function Home( props ) {
-  
-  useEffect(()=>{
-    props.setSearchedUser()
-    console.log(props.setSearchedUser())
-  },[])
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
-    console.log(e.target.value)
+    props.setSearchedUser(e.target.value)
   }
   
-  const navigate = useNavigate();
-
   function handleSubmit(e){
     e.preventDefault();
     navigate(`../results`)
@@ -34,8 +23,7 @@ function Home( props ) {
 
   return (
     <div className={styles.container}>
-      <img src={logo} alt="Logo Finder Github" className={styles.gif}></img>
-            
+      <img src={logo} alt="Logo Finder Github" className={styles.gif}></img>  
       <aside className={styles.aside}>
         < InputSearch onClick={handleSubmit} onChange={handleChange}/>
         <h1> PLATAFORMA <strong className={styles.perfect}>(PER)FEITA</strong> PARA ENCONTRAR Devs DE TODOS OS LUGARES!</h1>

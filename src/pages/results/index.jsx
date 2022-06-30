@@ -1,96 +1,117 @@
 import React from "react";
-import Profile from "../../components/profile";
-import Repository from "../../components/repository";
 import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
+import StarIcon from '@mui/icons-material/Star';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 import { getUser, getRepository } from "../../service_data/services"
 import InputSearch from "../../components/input";
+import Profile from "../../components/profile";
+import styles from "./results.module.css"
+import Header from "../../components/header"
+import iconFork from "../../img/gitfork.png"
 
 PageResults.propTypes = {
+  searchedUser: PropTypes.string,
   setSearchedUser: PropTypes.func
 };
 
 function PageResults(props) {
-  const [username, setUsername] = useState("");
-  //const [error, setError] = useState("")
-  const [infosUser, setInfosUser] = useState([])
+  const [errorRepos, setErrorRepos] = useState(false)
+  const [error, setError] = useState(false)
+  const [apearUsers, setApearUsers] = useState(false)
+  const [apearRepos, setApearRepos] = useState(false)
+  const [infosUser, setInfosUser] = useState({})
   const [reposInfos, setReposInfos] = useState([])
 
-  // useEffect(() => {
-  //   props.setSearchedUser(searchedUser)
-  // }, [])
-
-  // useEffect(() => {
-  //   setUsername
-  // })
-
-  //   const handleChange = (e) => {
-  //     setSearchedUser({
-  //       ...searchedUser,
-  //       [e.target.id]: e.target.value
-  //     })
-  //     setUser()
-  //     setRepositories()
-  //   }
-
-  async function setUser() {
-    try {
-      const response = await getUser(username);
-      if (response.data) {
-        const infos = response.data;
-        setInfosUser(infos)
-      }
-    } catch (error) {
-      //setError("Erro")
-      console.log(error)
-    }
-  }
+  console.log(apearUsers, apearRepos, error, errorRepos)
 
   useEffect(() => {
-    console.log(username)
-    setUser()
-    setRepositories()
-  }, [username])
+    if (props.searchedUser !== "" && props.searchedUser !== null && props.searchedUser !== undefined) {
+      setUser(props.searchedUser);
+    } else {
+      setError(false);
+    }
+  }, [props.searchedUser])
 
-  async function setRepositories() {
+  async function setUser(valueTyped) {
     try {
-      const response = await getRepository(username);
-      console.log(response.data);
-      const allRepos = response.data;
-      setReposInfos(allRepos)
+      const response = await getUser(valueTyped);
+      if (response.data) {
+        const infos = response.data;
+        console.log(infos);
+        setError(false);
+        setInfosUser(infos);
+        setApearUsers(true);
+        setRepositories(valueTyped);
+      }
     } catch (error) {
-      console.log(error)
-      //setError("Outro Erro")
+      console.log(error);
+      setApearUsers(false);
+      setError(true);
+      setApearRepos(false);
+      setErrorRepos(false)
     }
   }
 
-  const nonEmptySearch = username !== "";
+  async function setRepositories(valueTyped) {
+    try {
+      const response = await getRepository(valueTyped);
+      console.log(response.data);
+      const allRepos = response.data;
+      setErrorRepos(false);
+      setReposInfos(allRepos);
+      setApearRepos(true);
+    } catch (error) {
+      console.log(error);
+      setApearRepos(false);
+      setErrorRepos(true);
+    }
+  }
+
+  const handleChange = (e) => {
+    props.setSearchedUser(e.target.value.trim());
+  }
 
   return (
-    <div className="App">
-      <header className="header">
-        < InputSearch onChange={event => setUsername(props.setSearchedUser(event.target.value))}
-          value={username}
-        />
-      </header>
+    <div className={styles.container}>
+      <Box>
+        <Grid>
+          <Header />
+          <div className={styles.divInput}>
+            < InputSearch onChange={(e) => handleChange(e)} />
+          </div>
 
-      <main>
-        {nonEmptySearch &&
-          <section>
-            <Profile user={infosUser} />
-            {reposInfos.map((item) => {
-              return (
-                <Repository key={item.id} name={item.name} htmlUrl={item.html_url} 
-                  description={item.description} homepage={item.homepage} 
-                  stargazersCount={item.stargazers_count} 
-                  forksCount={item.forks_count} language={item.language}
-                />
-              )
-            })}
-          </section>
-        }
-      </main>
+          <main className={styles.main}>
+            {
+              apearUsers && error === false ?
+                <Profile user={infosUser} /> : null
+            }
+            {!error && !apearUsers ? <p>Pesquise algo</p> : null}
+            {error? <p>Erro</p> : null}
+            <section className={styles.containerRepo}>
+              { apearUsers && !error && apearRepos && !errorRepos ? 
+              reposInfos.map((item) => {
+                return (
+                  <ul key={item.id} className={styles.reposCard}>
+                    <li className={styles.liName}>Nome: {item.name}</li>
+                    <li className={styles.li}><a href={item.html_url}>Link de acesso</a></li>
+                    <li className={styles.liDescription}>Descrição: {item.description}</li>
+                    <div className={styles.cardIcons}>
+                      <li className={styles.li}><a href={item.homepage}>Link do deploy</a></li>
+                      <li className={styles.li}><StarIcon sx={{ color: "#FAC100", fontSize: 30 }} />{item.stargazers_count}</li>
+                      <li className={styles.li}><img src={iconFork} alt="icon Fork Github" className={styles.iconFork}></img>{item.forks_count}</li>
+                    </div>
+                    <li className={styles.liLanguages}>Linguagem mais utilizada: {item.language}</li>
+                  </ul>
+                )
+              }) :
+              null }
+            </section>
+          </main>
+        </Grid>
+      </Box>
     </div>
   );
 }
