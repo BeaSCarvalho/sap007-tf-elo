@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
 
-const token = "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";
+const token = process.env.REACT_APP_TOKEN;
 
 export async function getRepository(user){
   const octokit = new Octokit({
