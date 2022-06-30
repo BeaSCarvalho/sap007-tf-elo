@@ -6,7 +6,8 @@ import styles from "./input.module.css";
 
 InputSearch.propTypes = {
     onClick : PropTypes.func,
-    onChange : PropTypes.func
+    onChange : PropTypes.func,
+    disableButton: PropTypes.string
 };
 
 function InputSearch (props){
@@ -25,7 +26,7 @@ function InputSearch (props){
                     inputProps={{ 'aria-label': 'Digite o nome do usuário' }}
                 />
                 <IconButton type="submit"
-                    onClick={props.onClick} sx={{ p: '10px', color: "#fff"}} aria-label="search">
+                    onClick={props.onClick} sx={{ p: '10px', color: "#fff"}} aria-label="search" disabled={props.disableButton}>
                     <SearchIcon />
                 </IconButton>
             </Paper>
