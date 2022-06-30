@@ -1,6 +1,6 @@
 
 <div align="center">
-<img src='https://user-images.githubusercontent.com/97405991/176543493-17bf5c88-0528-4fce-a28d-ec557f936238.gif' alt="FinderGitHub"  width="200px;"></a> 
+<img src='https://user-images.githubusercontent.com/97405991/176543493-17bf5c88-0528-4fce-a28d-ec557f936238.gif' alt="FinderGitHub"  width="150px;"></a> 
 </div>
 
 
